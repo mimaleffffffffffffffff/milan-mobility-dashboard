@@ -1,20 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Mobility Hotspots in Milan</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mobility Hotspots in Milan</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header class="topbar">
+    <div>
+      <h1>Mobility Hotspots in Milan</h1>
+      <p class="subtitle">
+        Interactive view of dense mobility-service nodes identified from open geospatial data
+      </p>
+    </div>
+  </header>
 
-<h1>Mobility Hotspots in Milan</h1>
+  <main class="layout">
+    <section class="map-section">
+      <div id="map"></div>
+    </section>
 
-<div id="map"></div>
+    <aside class="sidebar">
+      <div class="panel">
+        <h2>Overview</h2>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="script.js"></script>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-label">Total points</span>
+            <span id="kpi-total-points" class="kpi-value">-</span>
+          </div>
 
+          <div class="kpi-card">
+            <span class="kpi-label">Hotspots</span>
+            <span id="kpi-total-hotspots" class="kpi-value">-</span>
+          </div>
+
+          <div class="kpi-card">
+            <span class="kpi-label">Largest hotspot</span>
+            <span id="kpi-largest-hotspot" class="kpi-value">-</span>
+          </div>
+
+          <div class="kpi-card">
+            <span class="kpi-label">Avg. hotspot size</span>
+            <span id="kpi-avg-hotspot" class="kpi-value">-</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Selected hotspot</h2>
+        <p class="helper-text">Click a red hotspot on the map to see details.</p>
+
+        <div id="hotspot-empty" class="empty-state">
+          No hotspot selected yet.
+        </div>
+
+        <div id="hotspot-details" class="hidden">
+          <div class="detail-block">
+            <div class="detail-label">Label</div>
+            <div id="detail-label" class="detail-value">-</div>
+          </div>
+
+          <div class="detail-block">
+            <div class="detail-label">Type</div>
+            <div id="detail-type" class="detail-value">-</div>
+          </div>
+
+          <div class="detail-row">
+            <div class="detail-mini">
+              <span class="detail-label">Points</span>
+              <span id="detail-points" class="detail-value">-</span>
+            </div>
+            <div class="detail-mini">
+              <span class="detail-label">Diversity</span>
+              <span id="detail-diversity" class="detail-value">-</span>
+            </div>
+          </div>
+
+          <div class="detail-block">
+            <div class="detail-label">Dominant type</div>
+            <div id="detail-dominant" class="detail-value">-</div>
+          </div>
+
+          <div class="detail-block">
+            <div class="detail-label">Composition</div>
+            <ul id="detail-composition" class="composition-list"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Map guide</h2>
+        <div class="legend-item">
+          <span class="legend-dot legend-hotspot"></span>
+          <span>Main hotspot centroid</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot legend-point"></span>
+          <span>Mobility point</span>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
