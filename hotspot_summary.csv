@@ -1,0 +1,29 @@
+cluster,hotspot_rank,hotspot_label,hotspot_type,n_points,diversity_score,dominant_type,bus_stop,bicycle_parking,station,parking,other,x_mean,y_mean
+0,1,Hotspot 0 - Multimodal Hub,multimodal_hub,3185,4,bus_stop,1996,847,119,223,0,514967.0802289973,5035404.503332271
+8,2,Hotspot 8 - Multimodal Hub,multimodal_hub,197,4,bus_stop,166,24,5,2,0,508931.38750207535,5038655.982891709
+14,3,Hotspot 14 - Multimodal Hub,multimodal_hub,109,4,bus_stop,84,7,4,14,0,513223.4255326237,5041175.580950299
+4,4,Hotspot 4 - Multimodal Hub,multimodal_hub,107,4,bus_stop,88,15,1,3,0,507825.4668248848,5033760.983244073
+5,5,Hotspot 5 - Multimodal Hub,multimodal_hub,95,4,bus_stop,53,30,5,7,0,513111.6256299667,5038730.936655817
+7,6,Hotspot 7 - Bus Corridor Hotspot,bus_corridor_hotspot,44,3,bus_stop,41,1,0,2,0,510672.5409512509,5040270.471929867
+6,7,Hotspot 6 - Multimodal Hub,multimodal_hub,34,4,bus_stop,21,6,1,6,0,514689.81697359495,5032361.376866396
+23,8,Hotspot 23 - Bus Corridor Hotspot,bus_corridor_hotspot,25,2,bus_stop,24,1,0,0,0,518801.55986939254,5040140.485300419
+16,9,Hotspot 16 - Bus Corridor Hotspot,bus_corridor_hotspot,19,2,bus_stop,18,0,0,1,0,512274.582279824,5040245.737637729
+15,10,Hotspot 15 - Bus Corridor Hotspot,bus_corridor_hotspot,17,2,bus_stop,16,1,0,0,0,506184.02349909244,5033326.324967731
+25,11,Hotspot 25 - Bus Corridor Hotspot,bus_corridor_hotspot,16,2,bus_stop,14,2,0,0,0,513398.4662198587,5028932.8482963685
+20,12,Hotspot 20 - Bus Corridor Hotspot,bus_corridor_hotspot,16,1,bus_stop,16,0,0,0,0,516012.0592556682,5030412.958691153
+9,13,Hotspot 9 - Bus Corridor Hotspot,bus_corridor_hotspot,14,3,bus_stop,12,1,0,1,0,509098.9351418809,5032218.283070113
+17,14,Hotspot 17 - Multimodal Hub,multimodal_hub,12,3,bus_stop,8,3,1,0,0,520840.5846507409,5039463.871353638
+21,15,Hotspot 21 - Bus Corridor Hotspot,bus_corridor_hotspot,11,1,bus_stop,11,0,0,0,0,520656.48909685516,5032099.472891178
+2,16,Hotspot 2 - Bus Corridor Hotspot,bus_corridor_hotspot,11,1,bus_stop,11,0,0,0,0,506938.7762592109,5035983.347764554
+26,17,Hotspot 26 - Bus Corridor Hotspot,bus_corridor_hotspot,9,1,bus_stop,9,0,0,0,0,513477.8462812874,5027929.821288311
+19,18,Hotspot 19 - Bus Corridor Hotspot,bus_corridor_hotspot,9,3,bus_stop,5,3,0,1,0,518500.87436953816,5029278.064584623
+13,19,Hotspot 13 - Bus Corridor Hotspot,bus_corridor_hotspot,8,2,bus_stop,5,3,0,0,0,509349.6277808415,5040541.062783878
+1,20,Hotspot 1 - Bus Corridor Hotspot,bus_corridor_hotspot,8,2,bus_stop,5,0,0,3,0,512880.0226547798,5038131.492643475
+22,21,Hotspot 22 - Bus Corridor Hotspot,bus_corridor_hotspot,8,1,bus_stop,8,0,0,0,0,509709.5305023143,5031559.760157493
+3,22,Hotspot 3 - Bus Corridor Hotspot,bus_corridor_hotspot,6,1,bus_stop,6,0,0,0,0,508455.5024600923,5034067.4177456405
+18,23,Hotspot 18 - Bus Corridor Hotspot,bus_corridor_hotspot,6,2,bus_stop,5,0,0,1,0,514827.66684341495,5038715.822356595
+12,24,Hotspot 12 - Bus Corridor Hotspot,bus_corridor_hotspot,6,1,bus_stop,6,0,0,0,0,505839.4336964511,5037712.3308329815
+27,25,Hotspot 27 - Bus Corridor Hotspot,bus_corridor_hotspot,6,3,bus_stop,3,2,0,1,0,513831.12264929153,5029794.360393172
+24,26,Hotspot 24 - Multimodal Hub,multimodal_hub,5,3,bicycle_parking,1,3,1,0,0,513489.8134947461,5042205.032656109
+11,27,Hotspot 11 - Bus Corridor Hotspot,bus_corridor_hotspot,5,1,bus_stop,5,0,0,0,0,511007.54087662545,5037859.90771096
+10,28,Hotspot 10 - Bus Corridor Hotspot,bus_corridor_hotspot,4,1,bus_stop,4,0,0,0,0,510770.62346926343,5039863.643115454
