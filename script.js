@@ -1,7 +1,9 @@
 const map = L.map("map").setView([45.4642, 9.19], 11.5);
 
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution: "© OpenStreetMap contributors"
+L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+  attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+  subdomains: "abcd",
+  maxZoom: 20
 }).addTo(map);
 
 let pointsLayer;
@@ -90,7 +92,7 @@ Promise.all([
           radius: 2.5,
           stroke: false,
           fillColor: "#9ca3af",
-          fillOpacity: 0.28
+          fillOpacity: 0.18
         });
       }
     }).addTo(map);
