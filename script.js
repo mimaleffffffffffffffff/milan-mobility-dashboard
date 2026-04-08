@@ -161,13 +161,8 @@ function hotspotMatchesSelectedServices(props) {
     return true;
   }
 
-  for (const type of activeTypes) {
-    if (Number(props[type] || 0) > 0) {
-      return true;
-    }
-  }
-
-  return false;
+  const dominantType = props.dominant_type;
+  return activeTypes.has(dominantType);
 }
 
 function applyFilters() {
