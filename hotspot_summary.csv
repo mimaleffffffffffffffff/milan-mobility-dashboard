@@ -1,29 +1,215 @@
-cluster,hotspot_rank,hotspot_label,hotspot_type,n_points,diversity_score,dominant_type,bus_stop,bicycle_parking,station,parking,other,x_mean,y_mean
-0,1,Hotspot 0 - Multimodal Hub,multimodal_hub,3185,4,bus_stop,1996,847,119,223,0,514967.0802289973,5035404.503332271
-8,2,Hotspot 8 - Multimodal Hub,multimodal_hub,197,4,bus_stop,166,24,5,2,0,508931.38750207535,5038655.982891709
-14,3,Hotspot 14 - Multimodal Hub,multimodal_hub,109,4,bus_stop,84,7,4,14,0,513223.4255326237,5041175.580950299
-4,4,Hotspot 4 - Multimodal Hub,multimodal_hub,107,4,bus_stop,88,15,1,3,0,507825.4668248848,5033760.983244073
-5,5,Hotspot 5 - Multimodal Hub,multimodal_hub,95,4,bus_stop,53,30,5,7,0,513111.6256299667,5038730.936655817
-7,6,Hotspot 7 - Bus Corridor Hotspot,bus_corridor_hotspot,44,3,bus_stop,41,1,0,2,0,510672.5409512509,5040270.471929867
-6,7,Hotspot 6 - Multimodal Hub,multimodal_hub,34,4,bus_stop,21,6,1,6,0,514689.81697359495,5032361.376866396
-23,8,Hotspot 23 - Bus Corridor Hotspot,bus_corridor_hotspot,25,2,bus_stop,24,1,0,0,0,518801.55986939254,5040140.485300419
-16,9,Hotspot 16 - Bus Corridor Hotspot,bus_corridor_hotspot,19,2,bus_stop,18,0,0,1,0,512274.582279824,5040245.737637729
-15,10,Hotspot 15 - Bus Corridor Hotspot,bus_corridor_hotspot,17,2,bus_stop,16,1,0,0,0,506184.02349909244,5033326.324967731
-25,11,Hotspot 25 - Bus Corridor Hotspot,bus_corridor_hotspot,16,2,bus_stop,14,2,0,0,0,513398.4662198587,5028932.8482963685
-20,12,Hotspot 20 - Bus Corridor Hotspot,bus_corridor_hotspot,16,1,bus_stop,16,0,0,0,0,516012.0592556682,5030412.958691153
-9,13,Hotspot 9 - Bus Corridor Hotspot,bus_corridor_hotspot,14,3,bus_stop,12,1,0,1,0,509098.9351418809,5032218.283070113
-17,14,Hotspot 17 - Multimodal Hub,multimodal_hub,12,3,bus_stop,8,3,1,0,0,520840.5846507409,5039463.871353638
-21,15,Hotspot 21 - Bus Corridor Hotspot,bus_corridor_hotspot,11,1,bus_stop,11,0,0,0,0,520656.48909685516,5032099.472891178
-2,16,Hotspot 2 - Bus Corridor Hotspot,bus_corridor_hotspot,11,1,bus_stop,11,0,0,0,0,506938.7762592109,5035983.347764554
-26,17,Hotspot 26 - Bus Corridor Hotspot,bus_corridor_hotspot,9,1,bus_stop,9,0,0,0,0,513477.8462812874,5027929.821288311
-19,18,Hotspot 19 - Bus Corridor Hotspot,bus_corridor_hotspot,9,3,bus_stop,5,3,0,1,0,518500.87436953816,5029278.064584623
-13,19,Hotspot 13 - Bus Corridor Hotspot,bus_corridor_hotspot,8,2,bus_stop,5,3,0,0,0,509349.6277808415,5040541.062783878
-1,20,Hotspot 1 - Bus Corridor Hotspot,bus_corridor_hotspot,8,2,bus_stop,5,0,0,3,0,512880.0226547798,5038131.492643475
-22,21,Hotspot 22 - Bus Corridor Hotspot,bus_corridor_hotspot,8,1,bus_stop,8,0,0,0,0,509709.5305023143,5031559.760157493
-3,22,Hotspot 3 - Bus Corridor Hotspot,bus_corridor_hotspot,6,1,bus_stop,6,0,0,0,0,508455.5024600923,5034067.4177456405
-18,23,Hotspot 18 - Bus Corridor Hotspot,bus_corridor_hotspot,6,2,bus_stop,5,0,0,1,0,514827.66684341495,5038715.822356595
-12,24,Hotspot 12 - Bus Corridor Hotspot,bus_corridor_hotspot,6,1,bus_stop,6,0,0,0,0,505839.4336964511,5037712.3308329815
-27,25,Hotspot 27 - Bus Corridor Hotspot,bus_corridor_hotspot,6,3,bus_stop,3,2,0,1,0,513831.12264929153,5029794.360393172
-24,26,Hotspot 24 - Multimodal Hub,multimodal_hub,5,3,bicycle_parking,1,3,1,0,0,513489.8134947461,5042205.032656109
-11,27,Hotspot 11 - Bus Corridor Hotspot,bus_corridor_hotspot,5,1,bus_stop,5,0,0,0,0,511007.54087662545,5037859.90771096
-10,28,Hotspot 10 - Bus Corridor Hotspot,bus_corridor_hotspot,4,1,bus_stop,4,0,0,0,0,510770.62346926343,5039863.643115454
+cluster,n_points,bus_stop,bicycle_parking,station,parking,other,diversity_score,dominant_type
+0,72,27,40,5,0,0,3,bicycle_parking
+1,19,12,4,1,2,0,4,bus_stop
+2,22,15,0,0,7,0,2,bus_stop
+3,5,5,0,0,0,0,1,bus_stop
+4,14,9,1,1,3,0,4,bus_stop
+5,27,15,10,2,0,0,3,bus_stop
+6,14,12,1,1,0,0,3,bus_stop
+7,9,6,2,1,0,0,3,bus_stop
+8,18,5,10,2,1,0,4,bicycle_parking
+9,15,8,5,1,1,0,4,bus_stop
+10,9,5,2,1,1,0,4,bus_stop
+11,5,5,0,0,0,0,1,bus_stop
+12,8,5,2,1,0,0,3,bus_stop
+13,41,18,5,2,16,0,4,bus_stop
+14,17,11,4,2,0,0,3,bus_stop
+15,8,4,3,0,1,0,3,bus_stop
+16,14,10,3,0,1,0,3,bus_stop
+17,29,12,13,0,4,0,3,bicycle_parking
+18,12,5,6,0,1,0,3,bicycle_parking
+19,20,16,2,2,0,0,3,bus_stop
+20,25,17,4,2,2,0,4,bus_stop
+21,25,12,12,0,1,0,3,bus_stop
+22,20,2,15,2,1,0,4,bicycle_parking
+23,5,4,0,0,1,0,2,bus_stop
+24,6,6,0,0,0,0,1,bus_stop
+25,41,8,33,0,0,0,2,bicycle_parking
+26,11,7,2,1,1,0,4,bus_stop
+27,7,5,2,0,0,0,2,bus_stop
+28,7,3,3,1,0,0,3,bus_stop
+29,26,14,10,2,0,0,3,bus_stop
+30,7,6,1,0,0,0,2,bus_stop
+31,7,2,4,1,0,0,3,bicycle_parking
+32,11,5,6,0,0,0,2,bicycle_parking
+33,7,5,1,1,0,0,3,bus_stop
+34,9,8,1,0,0,0,2,bus_stop
+35,5,5,0,0,0,0,1,bus_stop
+36,12,10,0,0,2,0,2,bus_stop
+37,9,8,0,0,1,0,2,bus_stop
+38,25,18,6,1,0,0,3,bus_stop
+39,9,9,0,0,0,0,1,bus_stop
+40,5,4,0,1,0,0,2,bus_stop
+41,6,5,0,0,1,0,2,bus_stop
+42,16,13,1,1,1,0,4,bus_stop
+43,18,13,5,0,0,0,2,bus_stop
+44,13,7,6,0,0,0,2,bus_stop
+45,7,7,0,0,0,0,1,bus_stop
+46,7,2,5,0,0,0,2,bicycle_parking
+47,24,13,7,2,2,0,4,bus_stop
+48,9,2,6,0,1,0,3,bicycle_parking
+49,6,5,0,1,0,0,2,bus_stop
+50,8,7,1,0,0,0,2,bus_stop
+51,10,10,0,0,0,0,1,bus_stop
+52,7,7,0,0,0,0,1,bus_stop
+53,10,4,5,1,0,0,3,bicycle_parking
+54,5,4,0,0,1,0,2,bus_stop
+55,5,5,0,0,0,0,1,bus_stop
+56,6,2,3,1,0,0,3,bicycle_parking
+57,12,11,0,1,0,0,2,bus_stop
+58,5,5,0,0,0,0,1,bus_stop
+59,6,5,0,1,0,0,2,bus_stop
+60,147,54,53,7,33,0,4,bus_stop
+61,5,5,0,0,0,0,1,bus_stop
+62,5,5,0,0,0,0,1,bus_stop
+63,15,10,4,1,0,0,3,bus_stop
+64,11,5,5,1,0,0,3,bus_stop
+65,9,4,4,1,0,0,3,bus_stop
+66,12,12,0,0,0,0,1,bus_stop
+67,10,9,0,1,0,0,2,bus_stop
+68,5,2,0,0,3,0,2,parking
+69,7,7,0,0,0,0,1,bus_stop
+70,6,3,3,0,0,0,2,bus_stop
+71,5,4,0,0,1,0,2,bus_stop
+72,7,5,1,1,0,0,3,bus_stop
+73,6,3,3,0,0,0,2,bus_stop
+74,20,15,3,2,0,0,3,bus_stop
+75,67,38,21,3,5,0,4,bus_stop
+76,6,6,0,0,0,0,1,bus_stop
+77,6,6,0,0,0,0,1,bus_stop
+78,5,5,0,0,0,0,1,bus_stop
+79,36,13,20,2,1,0,4,bicycle_parking
+80,9,7,1,0,1,0,3,bus_stop
+81,9,9,0,0,0,0,1,bus_stop
+82,13,8,4,1,0,0,3,bus_stop
+83,8,4,4,0,0,0,2,bus_stop
+84,24,21,0,1,2,0,3,bus_stop
+85,12,11,0,1,0,0,2,bus_stop
+86,12,8,3,1,0,0,3,bus_stop
+87,10,8,2,0,0,0,2,bus_stop
+88,13,10,2,0,1,0,3,bus_stop
+89,5,2,2,1,0,0,3,bus_stop
+90,13,7,4,1,1,0,4,bus_stop
+91,11,4,7,0,0,0,2,bicycle_parking
+92,5,4,0,1,0,0,2,bus_stop
+93,15,7,6,1,1,0,4,bus_stop
+94,14,9,3,1,1,0,4,bus_stop
+95,17,16,1,0,0,0,2,bus_stop
+96,12,9,0,0,3,0,2,bus_stop
+97,11,8,2,1,0,0,3,bus_stop
+98,5,4,0,0,1,0,2,bus_stop
+99,6,2,3,1,0,0,3,bicycle_parking
+100,12,6,4,2,0,0,3,bus_stop
+101,7,3,0,0,4,0,2,parking
+102,15,4,10,1,0,0,3,bicycle_parking
+103,8,3,5,0,0,0,2,bicycle_parking
+104,34,4,24,0,6,0,3,bicycle_parking
+105,9,6,2,1,0,0,3,bus_stop
+106,15,5,8,1,1,0,4,bicycle_parking
+107,14,4,9,1,0,0,3,bicycle_parking
+108,29,18,7,3,1,0,4,bus_stop
+109,9,4,4,0,1,0,3,bus_stop
+110,72,14,42,5,11,0,4,bicycle_parking
+111,9,2,3,0,4,0,3,parking
+112,5,4,0,0,1,0,2,bus_stop
+113,6,5,0,1,0,0,2,bus_stop
+114,7,5,2,0,0,0,2,bus_stop
+115,6,6,0,0,0,0,1,bus_stop
+116,8,5,3,0,0,0,2,bus_stop
+117,7,5,1,0,1,0,3,bus_stop
+118,4,2,2,0,0,0,2,bus_stop
+119,6,3,3,0,0,0,2,bus_stop
+120,11,8,0,0,3,0,2,bus_stop
+121,5,0,5,0,0,0,1,bicycle_parking
+122,9,0,9,0,0,0,1,bicycle_parking
+123,7,3,3,1,0,0,3,bus_stop
+124,24,15,5,1,3,0,4,bus_stop
+125,6,2,3,1,0,0,3,bicycle_parking
+126,52,12,38,1,1,0,4,bicycle_parking
+127,12,8,4,0,0,0,2,bus_stop
+128,17,11,5,0,1,0,3,bus_stop
+129,12,11,1,0,0,0,2,bus_stop
+130,9,7,1,1,0,0,3,bus_stop
+131,4,4,0,0,0,0,1,bus_stop
+132,9,7,1,1,0,0,3,bus_stop
+133,11,3,7,0,1,0,3,bicycle_parking
+134,22,11,8,1,2,0,4,bus_stop
+135,12,1,9,2,0,0,3,bicycle_parking
+136,9,0,7,0,2,0,2,bicycle_parking
+137,5,2,2,1,0,0,3,bus_stop
+138,4,3,1,0,0,0,2,bus_stop
+139,6,5,0,0,1,0,2,bus_stop
+140,6,3,2,1,0,0,3,bus_stop
+141,6,3,2,1,0,0,3,bus_stop
+142,10,9,0,0,1,0,2,bus_stop
+143,9,8,1,0,0,0,2,bus_stop
+144,10,6,2,2,0,0,3,bus_stop
+145,2,2,0,0,0,0,1,bus_stop
+146,9,7,1,1,0,0,3,bus_stop
+147,7,4,2,1,0,0,3,bus_stop
+148,6,6,0,0,0,0,1,bus_stop
+149,12,8,3,1,0,0,3,bus_stop
+150,6,6,0,0,0,0,1,bus_stop
+151,5,5,0,0,0,0,1,bus_stop
+152,5,5,0,0,0,0,1,bus_stop
+153,19,17,1,1,0,0,3,bus_stop
+154,5,3,0,0,2,0,2,bus_stop
+155,6,5,0,0,1,0,2,bus_stop
+156,5,3,2,0,0,0,2,bus_stop
+157,10,4,6,0,0,0,2,bicycle_parking
+158,9,8,0,0,1,0,2,bus_stop
+159,16,8,8,0,0,0,2,bus_stop
+160,7,7,0,0,0,0,1,bus_stop
+161,5,5,0,0,0,0,1,bus_stop
+162,6,4,0,0,2,0,2,bus_stop
+163,5,4,0,1,0,0,2,bus_stop
+164,6,5,0,0,1,0,2,bus_stop
+165,5,5,0,0,0,0,1,bus_stop
+166,5,5,0,0,0,0,1,bus_stop
+167,11,11,0,0,0,0,1,bus_stop
+168,6,6,0,0,0,0,1,bus_stop
+169,5,4,0,1,0,0,2,bus_stop
+170,5,4,0,1,0,0,2,bus_stop
+171,3,3,0,0,0,0,1,bus_stop
+172,6,5,0,0,1,0,2,bus_stop
+173,6,6,0,0,0,0,1,bus_stop
+174,10,10,0,0,0,0,1,bus_stop
+175,12,6,6,0,0,0,2,bus_stop
+176,5,2,2,0,1,0,3,bus_stop
+177,6,5,0,0,1,0,2,bus_stop
+178,3,3,0,0,0,0,1,bus_stop
+179,5,5,0,0,0,0,1,bus_stop
+180,5,5,0,0,0,0,1,bus_stop
+181,5,5,0,0,0,0,1,bus_stop
+182,8,4,3,1,0,0,3,bus_stop
+183,7,3,0,1,3,0,3,bus_stop
+184,5,1,2,0,2,0,3,bicycle_parking
+185,7,6,1,0,0,0,2,bus_stop
+186,5,4,0,0,1,0,2,bus_stop
+187,7,6,1,0,0,0,2,bus_stop
+188,7,5,1,1,0,0,3,bus_stop
+189,6,6,0,0,0,0,1,bus_stop
+190,5,5,0,0,0,0,1,bus_stop
+191,5,5,0,0,0,0,1,bus_stop
+192,12,0,11,1,0,0,2,bicycle_parking
+193,5,2,1,0,2,0,3,bus_stop
+194,7,4,3,0,0,0,2,bus_stop
+195,5,0,1,1,3,0,3,parking
+196,12,6,4,1,1,0,4,bus_stop
+197,5,1,3,0,1,0,3,bicycle_parking
+198,6,3,3,0,0,0,2,bus_stop
+199,7,7,0,0,0,0,1,bus_stop
+200,5,1,4,0,0,0,2,bicycle_parking
+201,6,1,5,0,0,0,2,bicycle_parking
+202,5,0,5,0,0,0,1,bicycle_parking
+203,10,0,10,0,0,0,1,bicycle_parking
+204,5,2,3,0,0,0,2,bicycle_parking
+205,10,2,4,0,4,0,3,bicycle_parking
+206,5,2,3,0,0,0,2,bicycle_parking
+207,10,5,2,1,2,0,4,bus_stop
+208,5,5,0,0,0,0,1,bus_stop
+209,5,3,0,1,1,0,3,bus_stop
+210,5,4,1,0,0,0,2,bus_stop
+211,4,4,0,0,0,0,1,bus_stop
+212,6,5,0,1,0,0,2,bus_stop
+213,5,3,0,2,0,0,2,bus_stop
