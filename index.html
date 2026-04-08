@@ -54,6 +54,33 @@
       </div>
 
       <div class="panel">
+        <h2>Filters</h2>
+
+        <div class="filter-section">
+          <span class="filter-label">Mobility services</span>
+          <div class="filter-chips">
+            <button class="filter-chip active" data-type="bus_stop">Bus stops</button>
+            <button class="filter-chip active" data-type="bicycle_parking">Bicycle parking</button>
+            <button class="filter-chip active" data-type="station">Stations</button>
+            <button class="filter-chip active" data-type="parking">Parking</button>
+            <button class="filter-chip active" data-type="other">Other</button>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <label for="diversity-filter" class="filter-label">Diversity</label>
+          <select id="diversity-filter" class="filter-select">
+            <option value="all">All</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+
+        <button id="reset-filters" class="reset-btn">Reset filters</button>
+      </div>
+
+      <div class="panel">
         <h2>Selected hotspot</h2>
         <p class="helper-text">Click a red hotspot on the map to see details.</p>
 
