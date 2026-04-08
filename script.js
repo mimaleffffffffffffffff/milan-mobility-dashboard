@@ -6,6 +6,7 @@ L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
   maxZoom: 20
 }).addTo(map);
 
+let boundaryLayer;
 let pointsLayer;
 let hotspotsLayer;
 let allPointsData;
@@ -104,6 +105,21 @@ function updateHotspotPanel(props) {
   }
 }
 
+function renderBoundary(boundaryData) {
+  if (boundaryLayer) {
+    map.removeLayer(boundaryLayer);
+  }
+
+  boundaryLayer = L.geoJSON(boundaryData, {
+    style: {
+      color: "#1f2937",
+      weight: 2,
+      opacity: 0.9,
+      fillOpacity: 0
+    }
+  }).addTo(map);
+}
+
 function renderLayers(pointsData, hotspotsData) {
   if (pointsLayer) {
     map.removeLayer(pointsLayer);
@@ -113,7 +129,6 @@ function renderLayers(pointsData, hotspotsData) {
     map.removeLayer(hotspotsLayer);
   }
 
-  // Keep all points visible as soft background context
   pointsLayer = L.geoJSON(pointsData, {
     pointToLayer: function (feature, latlng) {
       return L.circleMarker(latlng, {
@@ -153,10 +168,15 @@ function renderLayers(pointsData, hotspotsData) {
       });
     }
   }).addTo(map);
+
+  if (boundaryLayer) {
+    boundaryLayer.bringToFront();
+  }
+
+  hotspotsLayer.bringToFront();
 }
 
 function hotspotMatchesSelectedServices(props) {
-  // If no chips are active, show all hotspots
   if (activeTypes.size === 0) {
     return true;
   }
@@ -230,13 +250,15 @@ function setupFilters() {
 }
 
 Promise.all([
+  fetch("milano_boundary.geojson").then(res => res.json()),
   fetch("mobility_points_clustered.geojson").then(res => res.json()),
   fetch("hotspot_centroids.geojson").then(res => res.json())
 ])
-  .then(([pointsData, hotspotsData]) => {
+  .then(([boundaryData, pointsData, hotspotsData]) => {
     allPointsData = pointsData;
     allHotspotsData = hotspotsData;
 
+    renderBoundary(boundaryData);
     renderLayers(allPointsData, allHotspotsData);
     updateKPIs(allHotspotsData);
     setupFilters();
