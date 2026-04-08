@@ -227,6 +227,7 @@ body {
   height: 14px;
   border-radius: 50%;
   display: inline-block;
+  flex-shrink: 0;
 }
 
 .legend-hotspot {
@@ -235,6 +236,18 @@ body {
 
 .legend-point {
   background: #9ca3af;
+}
+
+.legend-line {
+  display: inline-block;
+  width: 20px;
+  height: 0;
+  border-top: 2px solid #1f2937;
+  flex-shrink: 0;
+}
+
+.legend-boundary {
+  border-top: 2px solid #1f2937;
 }
 
 .leaflet-popup-content {
