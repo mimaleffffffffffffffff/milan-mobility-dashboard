@@ -54,6 +54,67 @@
       </div>
 
       <div class="panel">
+        <button id="methodology-toggle" class="accordion-toggle" aria-expanded="false" type="button">
+          <span>How to read the map</span>
+          <span id="methodology-icon" class="accordion-icon">+</span>
+        </button>
+
+        <div id="methodology-content" class="accordion-content hidden">
+          <div class="info-block">
+            <div class="info-title">Hotspots</div>
+            <p>
+              Hotspots represent areas where multiple mobility services
+              (such as bus stops, bicycle parking, stations, and parking)
+              are spatially concentrated. Each red point is a summarized
+              representative location of one cluster.
+            </p>
+          </div>
+
+          <div class="info-block">
+            <div class="info-title">Clustering basis</div>
+            <p>
+              Hotspots are identified using a density-based clustering approach,
+              which groups mobility points that are close to each other within
+              a defined distance and minimum number of elements.
+            </p>
+          </div>
+
+          <div class="info-block">
+            <div class="info-title">Dominant type</div>
+            <p>
+              The dominant type indicates the most frequent mobility service
+              inside the hotspot. A hotspot may still contain multiple service
+              categories even if one type is dominant.
+            </p>
+          </div>
+
+          <div class="info-block">
+            <div class="info-title">Diversity</div>
+            <p>
+              Diversity represents how many different mobility service
+              categories are present within a hotspot. Higher diversity
+              suggests stronger multimodal mobility availability.
+            </p>
+          </div>
+
+          <div class="info-block highlight">
+            <div class="info-title">How to interpret</div>
+            <p>
+              Hotspots with high size and high diversity may indicate
+              well-connected multimodal areas, while low-diversity hotspots
+              may suggest single-mode concentration or gaps in mobility integration.
+            </p>
+          </div>
+
+          <p class="method-note">
+            This map is intended for exploratory analysis and should be combined
+            with contextual layers such as population, land use, or accessibility
+            indicators for planning decisions.
+          </p>
+        </div>
+      </div>
+
+      <div class="panel">
         <h2>Filters</h2>
 
         <div class="filter-section">
