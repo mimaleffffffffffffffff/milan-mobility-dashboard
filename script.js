@@ -11,13 +11,15 @@ let hotspotsLayer;
 let allPointsData;
 let allHotspotsData;
 
-const activeTypes = new Set([
+const DEFAULT_TYPES = [
   "bus_stop",
   "bicycle_parking",
   "station",
   "parking",
   "other"
-]);
+];
+
+const activeTypes = new Set(DEFAULT_TYPES);
 
 function formatLabel(value) {
   if (value === null || value === undefined) return "-";
@@ -32,17 +34,17 @@ function classifyDiversity(value) {
   return "high";
 }
 
-function updateKPIs(pointsData, hotspotsData) {
-  const totalPoints = pointsData.features.length;
+function updateKPIs(hotspotsData) {
   const totalHotspots = hotspotsData.features.length;
 
   const hotspotSizes = hotspotsData.features.map(
     f => Number(f.properties.n_points || 0)
   );
 
+  const totalPoints = hotspotSizes.reduce((sum, value) => sum + value, 0);
   const largestHotspot = hotspotSizes.length ? Math.max(...hotspotSizes) : 0;
   const avgHotspot = hotspotSizes.length
-    ? Math.round(hotspotSizes.reduce((a, b) => a + b, 0) / hotspotSizes.length)
+    ? Math.round(totalPoints / hotspotSizes.length)
     : 0;
 
   document.getElementById("kpi-total-points").textContent = totalPoints;
@@ -111,6 +113,7 @@ function renderLayers(pointsData, hotspotsData) {
     map.removeLayer(hotspotsLayer);
   }
 
+  // Keep all points visible as soft background context
   pointsLayer = L.geoJSON(pointsData, {
     pointToLayer: function (feature, latlng) {
       return L.circleMarker(latlng, {
@@ -152,48 +155,40 @@ function renderLayers(pointsData, hotspotsData) {
   }).addTo(map);
 }
 
+function hotspotMatchesSelectedServices(props) {
+  // If no chips are active, show all hotspots
+  if (activeTypes.size === 0) {
+    return true;
+  }
+
+  for (const type of activeTypes) {
+    if (Number(props[type] || 0) > 0) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 function applyFilters() {
   const diversityValue = document.getElementById("diversity-filter").value;
 
   const filteredHotspots = {
     type: "FeatureCollection",
     features: allHotspotsData.features.filter(feature => {
-      const props = feature.properties;
-      const hotspotType = props.hotspot_type;
+      const props = feature.properties || {};
       const diversityClass = classifyDiversity(props.diversity_score);
 
-      const matchesType = activeTypes.has(hotspotType);
+      const matchesServices = hotspotMatchesSelectedServices(props);
       const matchesDiversity =
         diversityValue === "all" || diversityClass === diversityValue;
 
-      return matchesType && matchesDiversity;
+      return matchesServices && matchesDiversity;
     })
   };
 
-  const filteredLabels = new Set(
-    filteredHotspots.features.map(f => f.properties.hotspot_label)
-  );
-
-  const filteredPoints = {
-    type: "FeatureCollection",
-    features: allPointsData.features.filter(feature => {
-      const props = feature.properties || {};
-      const pointClusterLabel =
-        props.hotspot_label ||
-        props.cluster_label ||
-        props.label ||
-        props.cluster_id;
-
-      if (pointClusterLabel !== undefined && pointClusterLabel !== null) {
-        return filteredLabels.has(pointClusterLabel);
-      }
-
-      return true;
-    })
-  };
-
-  renderLayers(filteredPoints, filteredHotspots);
-  updateKPIs(filteredPoints, filteredHotspots);
+  renderLayers(allPointsData, filteredHotspots);
+  updateKPIs(filteredHotspots);
   resetHotspotPanel();
 
   const bounds = hotspotsLayer.getBounds();
@@ -210,10 +205,8 @@ function setupFilters() {
       const type = this.dataset.type;
 
       if (activeTypes.has(type)) {
-        if (activeTypes.size > 1) {
-          activeTypes.delete(type);
-          this.classList.remove("active");
-        }
+        activeTypes.delete(type);
+        this.classList.remove("active");
       } else {
         activeTypes.add(type);
         this.classList.add("active");
@@ -229,11 +222,7 @@ function setupFilters() {
 
   document.getElementById("reset-filters").addEventListener("click", function () {
     activeTypes.clear();
-    activeTypes.add("bus_stop");
-    activeTypes.add("bicycle_parking");
-    activeTypes.add("station");
-    activeTypes.add("parking");
-    activeTypes.add("other");
+    DEFAULT_TYPES.forEach(type => activeTypes.add(type));
 
     document.querySelectorAll(".filter-chip").forEach(chip => {
       chip.classList.add("active");
@@ -254,7 +243,7 @@ Promise.all([
     allHotspotsData = hotspotsData;
 
     renderLayers(allPointsData, allHotspotsData);
-    updateKPIs(allPointsData, allHotspotsData);
+    updateKPIs(allHotspotsData);
     setupFilters();
 
     const bounds = hotspotsLayer.getBounds();
