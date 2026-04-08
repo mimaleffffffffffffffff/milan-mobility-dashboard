@@ -45,7 +45,7 @@ function updateKPIs(hotspotsData) {
   const totalPoints = hotspotSizes.reduce((sum, value) => sum + value, 0);
   const largestHotspot = hotspotSizes.length ? Math.max(...hotspotSizes) : 0;
   const avgHotspot = hotspotSizes.length
-    ? Math.round(totalPoints / hotspotSizes.length)
+    ? Math.round(totalPoints / hotspotsData.features.length)
     : 0;
 
   document.getElementById("kpi-total-points").textContent = totalPoints;
@@ -249,6 +249,28 @@ function setupFilters() {
   });
 }
 
+function setupMethodologyAccordion() {
+  const toggleBtn = document.getElementById("methodology-toggle");
+  const content = document.getElementById("methodology-content");
+  const icon = document.getElementById("methodology-icon");
+
+  if (!toggleBtn || !content || !icon) return;
+
+  toggleBtn.addEventListener("click", function () {
+    const isHidden = content.classList.contains("hidden");
+
+    if (isHidden) {
+      content.classList.remove("hidden");
+      toggleBtn.setAttribute("aria-expanded", "true");
+      icon.textContent = "−";
+    } else {
+      content.classList.add("hidden");
+      toggleBtn.setAttribute("aria-expanded", "false");
+      icon.textContent = "+";
+    }
+  });
+}
+
 Promise.all([
   fetch("milano_boundary.geojson").then(res => res.json()),
   fetch("mobility_points_clustered.geojson").then(res => res.json()),
@@ -262,6 +284,7 @@ Promise.all([
     renderLayers(allPointsData, allHotspotsData);
     updateKPIs(allHotspotsData);
     setupFilters();
+    setupMethodologyAccordion();
 
     const bounds = hotspotsLayer.getBounds();
     if (bounds.isValid()) {
