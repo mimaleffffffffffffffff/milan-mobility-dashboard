@@ -51,6 +51,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  overflow-y: auto;
+  padding-right: 4px;
 }
 
 .panel {
@@ -91,6 +93,65 @@ body {
 .kpi-value {
   font-size: 24px;
   font-weight: 700;
+}
+
+.accordion-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  text-align: left;
+}
+
+.accordion-icon {
+  font-size: 24px;
+  line-height: 1;
+  color: #6b7280;
+}
+
+.accordion-content {
+  margin-top: 16px;
+}
+
+.info-block {
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.info-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #111827;
+}
+
+.info-block p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+.info-block.highlight {
+  background: #fff7ed;
+  border: 1px solid #fdba74;
+}
+
+.method-note {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6b7280;
 }
 
 .filter-section {
@@ -276,5 +337,10 @@ body {
 
   #map {
     min-height: 520px;
+  }
+
+  .sidebar {
+    overflow-y: visible;
+    padding-right: 0;
   }
 }
