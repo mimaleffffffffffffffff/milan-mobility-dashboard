@@ -9,6 +9,10 @@
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
+  />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -164,11 +168,6 @@
             <div id="detail-label" class="detail-value">-</div>
           </div>
 
-          <div class="detail-block">
-            <div class="detail-label">Type</div>
-            <div id="detail-type" class="detail-value">-</div>
-          </div>
-
           <div class="detail-row">
             <div class="detail-mini">
               <span class="detail-label">Points</span>
@@ -242,6 +241,7 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
