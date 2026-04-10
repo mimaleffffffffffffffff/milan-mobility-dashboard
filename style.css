@@ -267,13 +267,22 @@ body {
   font-weight: 600;
 }
 
-.composition-list {
-  margin: 0;
-  padding-left: 18px;
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  margin-top: 8px;
+  padding: 10px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
 }
 
-.composition-list li {
-  margin-bottom: 6px;
+.chart-note {
+  margin: 8px 0 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #6b7280;
 }
 
 .legend-item {
