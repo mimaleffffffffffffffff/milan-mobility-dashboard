@@ -35,6 +35,15 @@ function classifyDiversity(value) {
   return "high";
 }
 
+function getHotspotRadiusClass(nPoints) {
+  const value = Number(nPoints || 0);
+
+  if (value <= 10) return 6;
+  if (value <= 30) return 9;
+  if (value <= 70) return 12;
+  return 16;
+}
+
 function updateKPIs(hotspotsData) {
   const totalHotspots = hotspotsData.features.length;
 
@@ -142,12 +151,15 @@ function renderLayers(pointsData, hotspotsData) {
 
   hotspotsLayer = L.geoJSON(hotspotsData, {
     pointToLayer: function (feature, latlng) {
+      const p = feature.properties || {};
+      const radius = getHotspotRadiusClass(p.n_points);
+
       return L.circleMarker(latlng, {
-        radius: 8,
+        radius: radius,
         color: "#b91c1c",
         weight: 2,
         fillColor: "#ef4444",
-        fillOpacity: 0.9
+        fillOpacity: 0.72
       });
     },
     onEachFeature: function (feature, layer) {
