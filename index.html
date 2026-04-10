@@ -97,6 +97,15 @@
             </p>
           </div>
 
+          <div class="info-block">
+            <div class="info-title">Hotspot size classes</div>
+            <p>
+              The size of each hotspot symbol represents the number of clustered
+              mobility points. Symbols are grouped into visual classes rather
+              than scaled linearly, to keep both small and large hotspots readable.
+            </p>
+          </div>
+
           <div class="info-block highlight">
             <div class="info-title">How to interpret</div>
             <p>
@@ -185,17 +194,42 @@
 
       <div class="panel">
         <h2>Map guide</h2>
+
         <div class="legend-item">
           <span class="legend-dot legend-hotspot"></span>
           <span>Main hotspot centroid</span>
         </div>
+
         <div class="legend-item">
           <span class="legend-dot legend-point"></span>
           <span>Mobility point</span>
         </div>
+
         <div class="legend-item">
           <span class="legend-line legend-boundary"></span>
           <span>Milano boundary</span>
+        </div>
+
+        <div class="legend-size-title">Hotspot size</div>
+
+        <div class="legend-item">
+          <span class="legend-circle legend-size-sm"></span>
+          <span>Small hotspot (1–10 points)</span>
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-circle legend-size-md"></span>
+          <span>Medium hotspot (11–30 points)</span>
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-circle legend-size-lg"></span>
+          <span>Large hotspot (31–70 points)</span>
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-circle legend-size-xl"></span>
+          <span>Very large hotspot (&gt; 70 points)</span>
         </div>
       </div>
     </aside>
