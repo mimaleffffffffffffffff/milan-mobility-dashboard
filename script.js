@@ -1,13 +1,37 @@
 const map = L.map("map").setView([45.4642, 9.19], 11.5);
 
-L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-  attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-  subdomains: "abcd",
-  maxZoom: 20
+// BASEMAPS
+const lightMap = L.tileLayer(
+  "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+  {
+    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+    subdomains: "abcd",
+    maxZoom: 20
+  }
+);
+
+const satelliteMap = L.tileLayer(
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+  {
+    attribution: 'Tiles &copy; Esri'
+  }
+);
+
+// Default basemap
+lightMap.addTo(map);
+
+// Basemap toggle control
+const baseMaps = {
+  "Light map": lightMap,
+  "Satellite": satelliteMap
+};
+
+L.control.layers(baseMaps, null, {
+  position: "topright",
+  collapsed: false
 }).addTo(map);
 
 let boundaryLayer;
-let maskLayer;
 let pointsLayer;
 let hotspotsLayer;
 let allPointsData;
@@ -201,61 +225,19 @@ function updateHotspotPanel(props) {
   renderCompositionChart(props);
 }
 
-function getMaskCoordinates(boundaryData) {
-  const feature = boundaryData.features[0];
-  const geometry = feature.geometry;
-
-  const worldRing = [
-    [-90, -180],
-    [-90, 180],
-    [90, 180],
-    [90, -180],
-    [-90, -180]
-  ];
-
-  const holes = [];
-
-  if (geometry.type === "Polygon") {
-    const outerRing = geometry.coordinates[0].map(([lng, lat]) => [lat, lng]);
-    holes.push(outerRing);
-  } else if (geometry.type === "MultiPolygon") {
-    geometry.coordinates.forEach(polygon => {
-      const outerRing = polygon[0].map(([lng, lat]) => [lat, lng]);
-      holes.push(outerRing);
-    });
-  }
-
-  return [worldRing, ...holes];
-}
-
 function renderBoundary(boundaryData) {
   if (boundaryLayer) {
     map.removeLayer(boundaryLayer);
   }
 
-  if (maskLayer) {
-    map.removeLayer(maskLayer);
-  }
-
-  const maskCoords = getMaskCoordinates(boundaryData);
-
-  maskLayer = L.polygon(maskCoords, {
-    stroke: false,
-    fillColor: "#ffffff",
-    fillOpacity: 0.52,
-    interactive: false
-  }).addTo(map);
-
   boundaryLayer = L.geoJSON(boundaryData, {
     style: {
-      color: "#111827",
-      weight: 2.5,
-      opacity: 1,
+      color: "#1f2937",
+      weight: 2,
+      opacity: 0.9,
       fillOpacity: 0
     }
   }).addTo(map);
-
-  boundaryLayer.bringToFront();
 }
 
 function renderLayers(pointsData, hotspotsData) {
@@ -273,7 +255,7 @@ function renderLayers(pointsData, hotspotsData) {
         radius: 2.5,
         stroke: false,
         fillColor: "#9ca3af",
-        fillOpacity: 0.14
+        fillOpacity: 0.18
       });
     }
   }).addTo(map);
@@ -312,17 +294,11 @@ function renderLayers(pointsData, hotspotsData) {
     }
   }).addTo(map);
 
-  if (maskLayer) {
-    maskLayer.bringToBack();
-  }
-
   if (boundaryLayer) {
     boundaryLayer.bringToFront();
   }
 
-  if (hotspotsLayer) {
-    hotspotsLayer.bringToFront();
-  }
+  hotspotsLayer.bringToFront();
 }
 
 function hotspotMatchesSelectedServices(props) {
