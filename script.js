@@ -11,6 +11,7 @@ let pointsLayer;
 let hotspotsLayer;
 let allPointsData;
 let allHotspotsData;
+let compositionChart = null;
 
 const DEFAULT_TYPES = [
   "bus_stop",
@@ -44,6 +45,15 @@ function getHotspotRadiusClass(nPoints) {
   return 16;
 }
 
+function getHotspotSizeLabel(nPoints) {
+  const value = Number(nPoints || 0);
+
+  if (value <= 10) return "Small";
+  if (value <= 30) return "Medium";
+  if (value <= 70) return "Large";
+  return "Very large";
+}
+
 function updateKPIs(hotspotsData) {
   const totalHotspots = hotspotsData.features.length;
 
@@ -66,6 +76,106 @@ function updateKPIs(hotspotsData) {
 function resetHotspotPanel() {
   document.getElementById("hotspot-empty").classList.remove("hidden");
   document.getElementById("hotspot-details").classList.add("hidden");
+
+  if (compositionChart) {
+    compositionChart.destroy();
+    compositionChart = null;
+  }
+}
+
+function renderCompositionChart(props) {
+  const canvas = document.getElementById("composition-chart");
+  if (!canvas) return;
+
+  const labels = [
+    "Bus stops",
+    "Bicycle parking",
+    "Stations",
+    "Parking",
+    "Other"
+  ];
+
+  const values = [
+    Number(props.bus_stop || 0),
+    Number(props.bicycle_parking || 0),
+    Number(props.station || 0),
+    Number(props.parking || 0),
+    Number(props.other || 0)
+  ];
+
+  if (compositionChart) {
+    compositionChart.destroy();
+  }
+
+  compositionChart = new Chart(canvas, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "Count",
+          data: values,
+          backgroundColor: [
+            "rgba(239, 68, 68, 0.85)",
+            "rgba(248, 113, 113, 0.85)",
+            "rgba(185, 28, 28, 0.85)",
+            "rgba(252, 165, 165, 0.85)",
+            "rgba(203, 213, 225, 0.95)"
+          ],
+          borderColor: [
+            "rgba(185, 28, 28, 1)",
+            "rgba(220, 38, 38, 1)",
+            "rgba(127, 29, 29, 1)",
+            "rgba(239, 68, 68, 1)",
+            "rgba(148, 163, 184, 1)"
+          ],
+          borderWidth: 1.2,
+          borderRadius: 6
+        }
+      ]
+    },
+    options: {
+      indexAxis: "y",
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: false,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return ` ${context.raw} services`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          grid: {
+            color: "#e5e7eb"
+          },
+          ticks: {
+            color: "#6b7280",
+            precision: 0
+          }
+        },
+        y: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            color: "#374151",
+            font: {
+              size: 12
+            }
+          }
+        }
+      }
+    }
+  });
 }
 
 function updateHotspotPanel(props) {
@@ -87,31 +197,7 @@ function updateHotspotPanel(props) {
   document.getElementById("detail-dominant").textContent =
     formatLabel(props.dominant_type);
 
-  const compositionList = document.getElementById("detail-composition");
-  compositionList.innerHTML = "";
-
-  const compositionFields = [
-    ["bus_stop", "Bus stops"],
-    ["bicycle_parking", "Bicycle parking"],
-    ["station", "Stations"],
-    ["parking", "Parking"],
-    ["other", "Other"]
-  ];
-
-  compositionFields.forEach(([field, label]) => {
-    const value = Number(props[field] || 0);
-    if (value > 0) {
-      const li = document.createElement("li");
-      li.textContent = `${label}: ${value}`;
-      compositionList.appendChild(li);
-    }
-  });
-
-  if (!compositionList.children.length) {
-    const li = document.createElement("li");
-    li.textContent = "No composition data available.";
-    compositionList.appendChild(li);
-  }
+  renderCompositionChart(props);
 }
 
 function renderBoundary(boundaryData) {
@@ -164,11 +250,13 @@ function renderLayers(pointsData, hotspotsData) {
     },
     onEachFeature: function (feature, layer) {
       const p = feature.properties;
+      const sizeClass = getHotspotSizeLabel(p.n_points);
 
       const popupContent = `
         <b>${p.hotspot_label || "Hotspot"}</b><br>
         Type: ${formatLabel(p.hotspot_type)}<br>
         Points: ${p.n_points ?? "-"}<br>
+        Size class: ${sizeClass}<br>
         Diversity: ${p.diversity_score ?? "-"}<br>
         Dominant type: ${formatLabel(p.dominant_type)}
       `;
