@@ -7,6 +7,7 @@ L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
 }).addTo(map);
 
 let boundaryLayer;
+let maskLayer;
 let pointsLayer;
 let hotspotsLayer;
 let allPointsData;
@@ -200,19 +201,61 @@ function updateHotspotPanel(props) {
   renderCompositionChart(props);
 }
 
+function getMaskCoordinates(boundaryData) {
+  const feature = boundaryData.features[0];
+  const geometry = feature.geometry;
+
+  const worldRing = [
+    [-90, -180],
+    [-90, 180],
+    [90, 180],
+    [90, -180],
+    [-90, -180]
+  ];
+
+  const holes = [];
+
+  if (geometry.type === "Polygon") {
+    const outerRing = geometry.coordinates[0].map(([lng, lat]) => [lat, lng]);
+    holes.push(outerRing);
+  } else if (geometry.type === "MultiPolygon") {
+    geometry.coordinates.forEach(polygon => {
+      const outerRing = polygon[0].map(([lng, lat]) => [lat, lng]);
+      holes.push(outerRing);
+    });
+  }
+
+  return [worldRing, ...holes];
+}
+
 function renderBoundary(boundaryData) {
   if (boundaryLayer) {
     map.removeLayer(boundaryLayer);
   }
 
+  if (maskLayer) {
+    map.removeLayer(maskLayer);
+  }
+
+  const maskCoords = getMaskCoordinates(boundaryData);
+
+  maskLayer = L.polygon(maskCoords, {
+    stroke: false,
+    fillColor: "#ffffff",
+    fillOpacity: 0.52,
+    interactive: false
+  }).addTo(map);
+
   boundaryLayer = L.geoJSON(boundaryData, {
     style: {
-      color: "#1f2937",
-      weight: 2,
-      opacity: 0.9,
+      color: "#111827",
+      weight: 2.5,
+      opacity: 1,
       fillOpacity: 0
     }
   }).addTo(map);
+
+  boundaryLayer.bringToFront();
 }
 
 function renderLayers(pointsData, hotspotsData) {
@@ -230,7 +273,7 @@ function renderLayers(pointsData, hotspotsData) {
         radius: 2.5,
         stroke: false,
         fillColor: "#9ca3af",
-        fillOpacity: 0.18
+        fillOpacity: 0.14
       });
     }
   }).addTo(map);
@@ -269,11 +312,17 @@ function renderLayers(pointsData, hotspotsData) {
     }
   }).addTo(map);
 
+  if (maskLayer) {
+    maskLayer.bringToBack();
+  }
+
   if (boundaryLayer) {
     boundaryLayer.bringToFront();
   }
 
-  hotspotsLayer.bringToFront();
+  if (hotspotsLayer) {
+    hotspotsLayer.bringToFront();
+  }
 }
 
 function hotspotMatchesSelectedServices(props) {
