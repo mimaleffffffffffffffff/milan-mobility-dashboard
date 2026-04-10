@@ -186,8 +186,13 @@
           </div>
 
           <div class="detail-block">
-            <div class="detail-label">Composition</div>
-            <ul id="detail-composition" class="composition-list"></ul>
+            <div class="detail-label">Composition by service type</div>
+            <div class="chart-wrap">
+              <canvas id="composition-chart"></canvas>
+            </div>
+            <p class="chart-note">
+              Values represent counts of mobility services inside the selected hotspot.
+            </p>
           </div>
         </div>
       </div>
@@ -236,6 +241,7 @@
   </main>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
