@@ -373,6 +373,68 @@ body {
   background: #f3f4f6;
 }
 
+/* Basemap layer control */
+.leaflet-control-layers {
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.leaflet-control-layers-toggle {
+  border-radius: 12px;
+}
+
+.leaflet-control-layers-expanded {
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #1f2937;
+  background: white;
+}
+
+/* Geocoder styling */
+.leaflet-control-geocoder {
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  background: white;
+  min-width: 280px;
+}
+
+.leaflet-control-geocoder form {
+  background: white;
+}
+
+.leaflet-control-geocoder input {
+  width: 100%;
+  font-size: 14px;
+  padding: 10px 12px;
+  color: #1f2937;
+  border: none;
+  outline: none;
+  background: white;
+}
+
+.leaflet-control-geocoder-icon {
+  border: none !important;
+  background-color: white;
+}
+
+.leaflet-control-geocoder-alternatives {
+  font-size: 14px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.leaflet-control-geocoder-alternatives li a {
+  padding: 8px 12px;
+  color: #374151;
+}
+
+.leaflet-control-geocoder-alternatives li a:hover {
+  background: #f8fafc;
+}
+
 @media (max-width: 1100px) {
   .layout {
     grid-template-columns: 1fr;
@@ -386,5 +448,24 @@ body {
   .sidebar {
     overflow-y: visible;
     padding-right: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar h1 {
+    font-size: 28px;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-row {
+    flex-direction: column;
+  }
+
+  .leaflet-control-geocoder {
+    min-width: 220px;
+    max-width: 220px;
   }
 }
