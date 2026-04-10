@@ -211,9 +211,6 @@ function updateHotspotPanel(props) {
   document.getElementById("detail-label").textContent =
     props.hotspot_label || "-";
 
-  document.getElementById("detail-type").textContent =
-    formatLabel(props.hotspot_type);
-
   document.getElementById("detail-points").textContent =
     props.n_points ?? "-";
 
@@ -280,7 +277,6 @@ function renderLayers(pointsData, hotspotsData) {
 
       const popupContent = `
         <b>${p.hotspot_label || "Hotspot"}</b><br>
-        Type: ${formatLabel(p.hotspot_type)}<br>
         Points: ${p.n_points ?? "-"}<br>
         Size class: ${sizeClass}<br>
         Diversity: ${p.diversity_score ?? "-"}<br>
@@ -425,7 +421,7 @@ function setupGeocoder() {
   const geocoder = L.Control.geocoder({
     defaultMarkGeocode: false,
     collapsed: false,
-    position: "topleft",
+    position: "topright",
     placeholder: "Search an address in Milan..."
   })
     .on("markgeocode", function (e) {
