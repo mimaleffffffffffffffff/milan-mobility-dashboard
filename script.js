@@ -37,6 +37,7 @@ let hotspotsLayer;
 let allPointsData;
 let allHotspotsData;
 let compositionChart = null;
+let searchMarker = null;
 
 const DEFAULT_TYPES = [
   "bus_stop",
@@ -396,6 +397,76 @@ function setupMethodologyAccordion() {
   });
 }
 
+function findNearestHotspot(latlng) {
+  if (!hotspotsLayer) return null;
+
+  let nearestLayer = null;
+  let minDistance = Infinity;
+
+  hotspotsLayer.eachLayer(layer => {
+    const hotspotLatLng = layer.getLatLng();
+    const distance = latlng.distanceTo(hotspotLatLng);
+
+    if (distance < minDistance) {
+      minDistance = distance;
+      nearestLayer = layer;
+    }
+  });
+
+  if (!nearestLayer) return null;
+
+  return {
+    layer: nearestLayer,
+    distanceMeters: minDistance
+  };
+}
+
+function setupGeocoder() {
+  const geocoder = L.Control.geocoder({
+    defaultMarkGeocode: false,
+    collapsed: false,
+    position: "topleft",
+    placeholder: "Search an address in Milan..."
+  })
+    .on("markgeocode", function (e) {
+      const center = e.geocode.center;
+
+      if (searchMarker) {
+        map.removeLayer(searchMarker);
+      }
+
+      searchMarker = L.marker(center).addTo(map);
+
+      const nearest = findNearestHotspot(center);
+
+      if (!nearest) {
+        map.setView(center, 15);
+        searchMarker.bindPopup("Address found, but no hotspot is available.").openPopup();
+        return;
+      }
+
+      const nearestProps = nearest.layer.feature.properties || {};
+      const distanceRounded = Math.round(nearest.distanceMeters);
+
+      map.flyToBounds(
+        L.latLngBounds([center, nearest.layer.getLatLng()]).pad(0.6),
+        { duration: 0.8 }
+      );
+
+      updateHotspotPanel(nearestProps);
+      nearest.layer.openPopup();
+
+      const searchPopup = `
+        <b>Address found</b><br>
+        Nearest hotspot: ${nearestProps.hotspot_label || "Hotspot"}<br>
+        Distance: ${distanceRounded} m
+      `;
+
+      searchMarker.bindPopup(searchPopup).openPopup();
+    })
+    .addTo(map);
+}
+
 Promise.all([
   fetch("milano_boundary.geojson").then(res => res.json()),
   fetch("mobility_points_clustered.geojson").then(res => res.json()),
@@ -410,6 +481,7 @@ Promise.all([
     updateKPIs(allHotspotsData);
     setupFilters();
     setupMethodologyAccordion();
+    setupGeocoder();
 
     const bounds = hotspotsLayer.getBounds();
     if (bounds.isValid()) {
