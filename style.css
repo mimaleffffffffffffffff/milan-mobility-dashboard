@@ -373,12 +373,18 @@ body {
   background: #f3f4f6;
 }
 
-/* Basemap layer control */
+.leaflet-top.leaflet-right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .leaflet-control-layers {
   border: none !important;
   border-radius: 12px !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   overflow: hidden;
+  background: white;
 }
 
 .leaflet-control-layers-toggle {
@@ -392,7 +398,6 @@ body {
   background: white;
 }
 
-/* Geocoder styling */
 .leaflet-control-geocoder {
   border: none !important;
   border-radius: 12px !important;
