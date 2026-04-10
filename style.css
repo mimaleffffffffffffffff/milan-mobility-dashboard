@@ -5,7 +5,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f4f6f8;
+  background: #f8fafc;
   color: #1f2937;
 }
 
@@ -370,7 +370,7 @@ body {
 }
 
 .leaflet-container {
-  background: #eef2f7;
+  background: #f3f4f6;
 }
 
 @media (max-width: 1100px) {
