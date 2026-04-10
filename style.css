@@ -311,6 +311,41 @@ body {
   border-top: 2px solid #1f2937;
 }
 
+.legend-size-title {
+  margin: 18px 0 10px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.legend-circle {
+  display: inline-block;
+  border-radius: 50%;
+  background: #ef4444;
+  border: 2px solid #b91c1c;
+  flex-shrink: 0;
+}
+
+.legend-size-sm {
+  width: 10px;
+  height: 10px;
+}
+
+.legend-size-md {
+  width: 16px;
+  height: 16px;
+}
+
+.legend-size-lg {
+  width: 22px;
+  height: 22px;
+}
+
+.legend-size-xl {
+  width: 30px;
+  height: 30px;
+}
+
 .leaflet-popup-content {
   font-size: 14px;
   line-height: 1.45;
